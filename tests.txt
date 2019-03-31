@@ -1,0 +1,52 @@
+------ TEST 1 ------
+
+name()  {
+    "John"
+}
+
+surname() {
+    "Doe"
+}
+
+fullname(first_name, sep, last_name) {
+    first_name + sep + last_name
+}
+
+------ TEST 2 ------
+
+name() {
+    "Joh	n"  -- fail string literal printing
+}
+
+repeat(x) {
+    x + x
+}
+
+cond_repeat(c, x) {
+    if (c prefix "yes")
+        if("yes" prefix c)
+            repeat(repeat(x))
+        else
+            x
+    else
+        x
+}
+
+
+------ TEST 3 ------
+
+findLangType(langName) {
+    if ("Java" prefix langName)
+        if(langName prefix "Java")
+            "Static"
+        else
+            if("script" suffix langName)
+                "Dynamic"
+            else
+                "Unknown"
+    else
+        if ("script" suffix langName)
+            "Probably Dynamic"
+        else
+            "Unknown"
+}

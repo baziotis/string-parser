@@ -1,0 +1,23 @@
+// Probably not 100% correct.
+
+expr_list = bin_expr (',' bin_expr)*
+call = NAME '(' expr_list ')'
+
+base_expr =
+       STR
+     | NAME
+     | '(' expr ')'
+     | call
+
+bin_expr = base_expr ('+' base_expr)*
+logical_expr = bin_expr (PREFIX | SUFFIX) bin_expr
+
+stmt = 'if' '(' logical_expr ')' stmt 'else' stmt
+	 | 'return' bin_expr
+
+decl = NAME '(' NAME? (',' NAME)* ')' '{' stmt '}'
+decl_list = decl*
+
+call_list = call*
+
+program = decl_list call_list
